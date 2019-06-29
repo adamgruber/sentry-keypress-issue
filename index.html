@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sentry Keypress Issue</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Demo of Sentry keypress issue" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container container-fluid">
+      <div class="row">
+        <div class="col-sm">
+          <h1 class="mb-4">Sentry.io Keypress Issue</h1>
+          <h2>Issue Description:</h2>
+          <p>
+            Sentry's breadcrumb integration prevents adding
+            <code>keypress</code> listeners when using an object with a
+            <code>handleEvent</code> property.
+          </p>
+          <h2>Demo:</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <form id="dsn" class="mb-4">
+            <div class="form-group">
+              <label for="sentryDsn">Sentry DSN</label>
+              <input
+                type="text"
+                class="form-control"
+                id="sentryDsn"
+                placeholder="Enter Sentry DSN"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Start Demo</button>
+          </form>
+        </div>
+      </div>
+      <div id="demo" class="row" style="display: none;">
+        <div class="col-sm">
+          <p>
+            Focus the test elements below and press a key. The elements will
+            turn green to indicate the <code>keypress</code> event was received.
+          </p>
+          <div id="test-elements" class="d-flex">
+            <div id="testEl" tabindex="0" class="alert alert-secondary">
+              <h5>Test Element 1</h5>
+              <p>
+                <code>keypress</code> added before
+                <code>Sentry.init()</code>
+              </p>
+              <div class="counter">
+                Keypresses Received <span class="badge badge-light">0</span>
+              </div>
+            </div>
+
+            <div id="testEl2" tabindex="0" class="alert alert-secondary ml-4">
+              <h5>Test Element 2</h5>
+              <p>
+                <code>keypress</code> added after <code>Sentry.init()</code>
+              </p>
+              <div class="counter">
+                Keypresses Received <span class="badge badge-light">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://browser.sentry-cdn.com/5.4.3/bundle.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./app.js"></script>
+</html>
